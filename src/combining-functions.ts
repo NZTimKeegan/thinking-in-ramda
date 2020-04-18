@@ -3,6 +3,7 @@ import * as R from 'ramda';
 interface Person {
     age: number;
     birthCountry: string;
+    name?: string;
     naturalisationDate?: Date;
 }
 
