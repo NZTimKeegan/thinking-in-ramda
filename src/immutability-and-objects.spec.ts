@@ -30,7 +30,6 @@ import {
 
 import { Person } from './combining-functions';
 
-import * as R from 'ramda';
 import { expect } from 'chai';
 import 'mocha';
 
