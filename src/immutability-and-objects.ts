@@ -31,7 +31,6 @@ const wasNaturalisedPointfree = R.compose(
     R.prop('naturalisationDate')
 );
 
-
 const isOver18Pointfree = R.compose(
     R.gte(R.__, 18),
     R.prop('age')

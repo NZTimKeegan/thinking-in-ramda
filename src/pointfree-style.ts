@@ -1,6 +1,5 @@
 import * as R from 'ramda';
 import { Book } from './partial-application';
-import { Person } from './combining-functions';
 
 // Remember forever 21 from last time
 const forever21 = (age: number) =>
