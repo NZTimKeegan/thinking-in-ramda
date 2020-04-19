@@ -16,8 +16,8 @@ import {
     OuterObject,
     defaultDate,
     hasNaturalisationDate,
-    hasNaturalisationDateOr,
-    hasNaturalisationDatePathOr,
+    naturalisationDateOr,
+    naturalisationDatePathOr,
     renamePersonPedro,
     renameInnerPersonPedro,
     pathToInnerAge,
@@ -25,7 +25,8 @@ import {
     denaturaliseInnerPerson,
     denationaliseAndBornarise,
     celebrateBirthday,
-    celebrateBirthdayPointfree
+    celebrateBirthdayPointfree,
+    mergeWithDefaultOptions
 } from './immutability-and-objects';
 
 import { Person } from './combining-functions';
@@ -36,22 +37,22 @@ import 'mocha';
 describe('Was born in country', () => {
 
     it('return true if the person was born in NZ', () => {
-        const person: Person = {
+        const input: Person = {
             age: 100,
             birthCountry: 'NZ'
         };
 
-        const result = wasBornInCountry(person);
+        const result = wasBornInCountry(input);
         expect(result).to.equal(true);
     });
 
     it('returns false if the person was not born in NZ', () => {
-        const person: Person = {
+        const input: Person = {
             age: 100,
             birthCountry: '??'
         };
 
-        const result = wasBornInCountry(person);
+        const result = wasBornInCountry(input);
         expect(result).to.equal(false);
 
     });
@@ -60,22 +61,22 @@ describe('Was born in country', () => {
 describe('Was born in country prop', () => {
 
     it('return true if the person was born in NZ', () => {
-        const person: Person = {
+        const input: Person = {
             age: 100,
             birthCountry: 'NZ'
         };
 
-        const result = wasBornInCountryProp(person);
+        const result = wasBornInCountryProp(input);
         expect(result).to.equal(true);
     });
 
     it('returns false if the person was not born in NZ', () => {
-        const person: Person = {
+        const input: Person = {
             age: 100,
             birthCountry: '??'
         };
 
-        const result = wasBornInCountryProp(person);
+        const result = wasBornInCountryProp(input);
         expect(result).to.equal(false);
 
     });
@@ -84,22 +85,22 @@ describe('Was born in country prop', () => {
 describe('Was born in country watch', () => {
 
     it('return true if the person was born in NZ', () => {
-        const person: Person = {
+        const input: Person = {
             age: 100,
             birthCountry: 'NZ'
         };
 
-        const result = wasBornInCountryWatch(person);
+        const result = wasBornInCountryWatch(input);
         expect(result).to.equal(true);
     });
 
     it('returns false if the person was not born in NZ', () => {
-        const person: Person = {
+        const input: Person = {
             age: 100,
             birthCountry: '??'
         };
 
-        const result = wasBornInCountryWatch(person);
+        const result = wasBornInCountryWatch(input);
         expect(result).to.equal(false);
 
     });
@@ -118,12 +119,12 @@ describe('Was born in country point free', () => {
     });
 
     it('returns false if the person was not born in NZ', () => {
-        const person: Person = {
+        const input: Person = {
             age: 100,
             birthCountry: '??'
         };
 
-        const result = wasBornInCountryPointfree(person);
+        const result = wasBornInCountryPointfree(input);
         expect(result).to.equal(false);
 
     });
@@ -132,22 +133,22 @@ describe('Was born in country point free', () => {
 describe('Is over 18', () => {
 
     it('returns true if the person is over 18', () => {
-        const person: Person = {
+        const input: Person = {
             age: 100,
             birthCountry: 'NZ'
         };
 
-        const result = isOver18(person);
+        const result = isOver18(input);
         expect(result).to.equal(true);
     });
 
     it('returns false if the person is under 18', () => {
-        const person: Person = {
+        const input: Person = {
             age: 10,
             birthCountry: 'NZ'
         };
 
-        const result = isOver18(person);
+        const result = isOver18(input);
         expect(result).to.equal(false);
     });
 });
@@ -155,22 +156,22 @@ describe('Is over 18', () => {
 describe('Is over 18 curry', () => {
 
     it('returns true if the person is over 18', () => {
-        const person: Person = {
+        const input: Person = {
             age: 100,
             birthCountry: 'NZ'
         };
 
-        const result = isOver18Curry(person);
+        const result = isOver18Curry(input);
         expect(result).to.equal(true);
     });
 
     it('returns false if the person is under 18', () => {
-        const person: Person = {
+        const input: Person = {
             age: 10,
             birthCountry: 'NZ'
         };
 
-        const result = isOver18Curry(person);
+        const result = isOver18Curry(input);
         expect(result).to.equal(false);
     });
 });
@@ -178,22 +179,22 @@ describe('Is over 18 curry', () => {
 describe('Is over 18 prop', () => {
 
     it('returns true if the person is over 18', () => {
-        const person: Person = {
+        const input: Person = {
             age: 100,
             birthCountry: 'NZ'
         };
 
-        const result = isOver18Prop(person);
+        const result = isOver18Prop(input);
         expect(result).to.equal(true);
     });
 
     it('returns false if the person is under 18', () => {
-        const person: Person = {
+        const input: Person = {
             age: 10,
             birthCountry: 'NZ'
         };
 
-        const result = isOver18Prop(person);
+        const result = isOver18Prop(input);
         expect(result).to.equal(false);
     });
 });
@@ -201,22 +202,22 @@ describe('Is over 18 prop', () => {
 describe('Is over 18 watch', () => {
 
     it('returns true if the person is over 18', () => {
-        const person: Person = {
+        const input: Person = {
             age: 100,
             birthCountry: 'NZ'
         };
 
-        const result = isOver18Watch(person);
+        const result = isOver18Watch(input);
         expect(result).to.equal(true);
     });
 
     it('returns false if the person is under 18', () => {
-        const person: Person = {
+        const input: Person = {
             age: 10,
             birthCountry: 'NZ'
         };
 
-        const result = isOver18Watch(person);
+        const result = isOver18Watch(input);
         expect(result).to.equal(false);
     });
 });
@@ -224,22 +225,22 @@ describe('Is over 18 watch', () => {
 describe('Is over 18 point free', () => {
 
     it('returns true if the person is over 18', () => {
-        const person: Person = {
+        const input: Person = {
             age: 100,
             birthCountry: 'NZ'
         };
 
-        const result = isOver18Pointfree(person);
+        const result = isOver18Pointfree(input);
         expect(result).to.equal(true);
     });
 
     it('returns false if the person is under 18', () => {
-        const person: Person = {
+        const input: Person = {
             age: 10,
             birthCountry: 'NZ'
         };
 
-        const result = isOver18Pointfree(person);
+        const result = isOver18Pointfree(input);
         expect(result).to.equal(false);
     });
 });
@@ -247,23 +248,23 @@ describe('Is over 18 point free', () => {
 describe('Was naturalised', () => {
 
     it('returns true if the person has a naturalisaton date', () => {
-        const person: Person = {
+        const input: Person = {
             age: 100,
             birthCountry: 'NZ',
             naturalisationDate: new Date(2020, 1, 1)
         };
 
-        const result = wasNaturalised(person);
+        const result = wasNaturalised(input);
         expect(result).to.equal(true);
     });
 
     it('returns false if the person has no naturalisaton date', () => {
-        const person: Person = {
+        const input: Person = {
             age: 100,
             birthCountry: 'NZ'
         };
 
-        const result = wasNaturalised(person);
+        const result = wasNaturalised(input);
         expect(result).to.equal(false);
     });
 });
@@ -271,23 +272,23 @@ describe('Was naturalised', () => {
 describe('Was naturalised prop', () => {
 
     it('returns true if the person has a naturalisaton date', () => {
-        const person: Person = {
+        const input: Person = {
             age: 100,
             birthCountry: 'NZ',
             naturalisationDate: new Date(2020, 1, 1)
         };
 
-        const result = wasNaturalisedProp(person);
+        const result = wasNaturalisedProp(input);
         expect(result).to.equal(true);
     });
 
     it('returns false if the person has no naturalisaton date', () => {
-        const person: Person = {
+        const input: Person = {
             age: 100,
             birthCountry: 'NZ'
         };
 
-        const result = wasNaturalisedProp(person);
+        const result = wasNaturalisedProp(input);
         expect(result).to.equal(false);
     });
 });
@@ -295,23 +296,23 @@ describe('Was naturalised prop', () => {
 describe('Was naturalised watch', () => {
 
     it('returns true if the person has a naturalisaton date', () => {
-        const person: Person = {
+        const input: Person = {
             age: 100,
             birthCountry: 'NZ',
             naturalisationDate: new Date(2020, 1, 1)
         };
 
-        const result = wasNaturalisedWatch(person);
+        const result = wasNaturalisedWatch(input);
         expect(result).to.equal(true);
     });
 
     it('returns false if the person has no naturalisaton date', () => {
-        const person: Person = {
+        const input: Person = {
             age: 100,
             birthCountry: 'NZ'
         };
 
-        const result = wasNaturalisedWatch(person);
+        const result = wasNaturalisedWatch(input);
         expect(result).to.equal(false);
     });
 });
@@ -319,23 +320,23 @@ describe('Was naturalised watch', () => {
 describe('Was naturalised point free', () => {
 
     it('returns true if the person has a naturalisaton date', () => {
-        const person: Person = {
+        const input: Person = {
             age: 100,
             birthCountry: 'NZ',
             naturalisationDate: new Date(2020, 1, 1)
         };
 
-        const result = wasNaturalisedPointfree(person);
+        const result = wasNaturalisedPointfree(input);
         expect(result).to.equal(true);
     });
 
     it('returns false if the person has no naturalisaton date', () => {
-        const person: Person = {
+        const input: Person = {
             age: 100,
             birthCountry: 'NZ'
         };
 
-        const result = wasNaturalisedPointfree(person);
+        const result = wasNaturalisedPointfree(input);
         expect(result).to.equal(false);
     });
 });
@@ -343,100 +344,94 @@ describe('Was naturalised point free', () => {
 describe('Age and country', () => {
 
     it('picks the age and country off a person', () => {
-        const person: Person = {
+        const input: Person = {
             age: 100,
             birthCountry: 'NZ',
             naturalisationDate: new Date(2020, 1, 1)
         };
 
         const expected: Person = {
-            age: 100,
-            birthCountry: 'NZ'
+            age: input.age,
+            birthCountry: input.birthCountry
         };
 
-        const result = ageAndCountry(person);
-
-        expect(result.age).to.equal(expected.age);
-        expect(result.birthCountry).to.equal(expected.birthCountry);
+        const result = ageAndCountry(input);
+        expect(result).to.eql(expected);
     });
 });
 
-describe('Has naturalisation date', () => {
+describe('Naturalisation date', () => {
 
     it('Returns true if the person has a naturalisation date', () => {
-        const person: Person = {
+        const input: Person = {
             age: 100,
             birthCountry: 'NZ',
             naturalisationDate: new Date(2020, 1, 1)
         };
 
-        const result = hasNaturalisationDate(person);
+        const result = hasNaturalisationDate(input);
         expect(result).to.equal(true);
     });
 
     it('Returns false if the person has no naturalisation date', () => {
-        const person: Person = {
+        const input: Person = {
             age: 100,
             birthCountry: 'NZ'
         };
 
-        const result = hasNaturalisationDate(person);
+        const result = hasNaturalisationDate(input);
         expect(result).to.equal(false);
     });
 });
 
-describe('Has naturalisation date or', () => {
+describe('Naturalisation date or', () => {
 
-    it('Returns true if the person has a naturalisation date', () => {
-        const person: Person = {
+    it('Returns the prop if the person has a naturalisation date', () => {
+        const input: Person = {
             age: 100,
             birthCountry: 'NZ',
             naturalisationDate: new Date(2020, 1, 1)
         };
 
-        const result = hasNaturalisationDateOr(person);
-        expect(result).to.equal(person.naturalisationDate);
+        const result = naturalisationDateOr(input);
+        expect(result).to.equal(input.naturalisationDate);
     });
 
-    it('Returns false if the person has no naturalisation date', () => {
-        const person: Person = {
+    it('Returns default if the person has no naturalisation date', () => {
+        const input: Person = {
             age: 100,
             birthCountry: 'NZ'
         };
 
-        const result = hasNaturalisationDateOr(person);
+        const result = naturalisationDateOr(input);
         expect(result).to.equal(defaultDate);
     });
 });
 
-describe('Has naturalisation date path or', () => {
+describe('Naturalisation date path or', () => {
 
     it('Returns the date if the person has a naturalisation date', () => {
-        const person: Person = {
-            age: 100,
-            birthCountry: 'NZ',
-            naturalisationDate: new Date(2020, 1, 2)
+        const input: OuterObject = {
+            person: {
+                age: 100,
+                birthCountry: 'NZ',
+                naturalisationDate: new Date(2020, 1, 2)
+            }
         };
 
-        const outer: OuterObject = {
-            person: person
-        };
-
-        const result = hasNaturalisationDatePathOr(outer);
-        expect(result).to.equal(person.naturalisationDate);
+        const result = naturalisationDatePathOr(input);
+        expect(result).to.equal(input.person.naturalisationDate);
     });
 
-    it('Returns false if the person has no naturalisation date', () => {
-        const person: Person = {
-            age: 100,
-            birthCountry: 'NZ'
+    it('Returns default if the person has no naturalisation date', () => {
+        const input: OuterObject = {
+            person: {
+                age: 100,
+                birthCountry: 'NZ'
+            }
         };
 
-        const outer: OuterObject = {
-            person: person
-        };
-
-        const result = hasNaturalisationDatePathOr(outer);
+        const result = naturalisationDatePathOr(input);
         expect(result).to.equal(defaultDate);
     });
 });
@@ -444,120 +439,219 @@ describe('Has naturalisation date path or', () => {
 describe('Rename person pedro', () => {
 
     it('renames people pedro', () => {
-        const person: Person = {
+        const input: Person = {
             age: 100,
             birthCountry: 'NZ',
             name: 'Not pedro'
         };
 
-        const result = renamePersonPedro(person);
-        expect(result.name).to.equal('pedro');
+        const expected: Person = {
+            age: input.age,
+            birthCountry: input.birthCountry,
+            name: 'pedro'
+        };
+
+        const result = renamePersonPedro(input);
+        expect(result).to.eql(expected);
     });
 });
 
 describe('Rename inner person pedro', () => {
 
     it('renames inner people pedro', () => {
-        const person: Person = {
-            age: 100,
-            birthCountry: 'NZ',
-            name: 'Not pedro'
+        const input: OuterObject = {
+            person: {
+                age: 100,
+                birthCountry: 'NZ',
+                name: 'Not pedro'
+            }
         };
 
-        const outer: OuterObject = {
-            person: person
+        const expected: OuterObject = {
+            person: {
+                age: input.person.age,
+                birthCountry: input.person.birthCountry,
+                name: 'pedro'
+            }
         };
 
-        const result = renameInnerPersonPedro(outer);
-        expect(result.person.name).to.equal('pedro');
+        const result = renameInnerPersonPedro(input);
+        expect(result).to.eql(expected);
     });
 });
 
 describe('Path to inner age', () => {
 
     it('picks the age of a nested person', () => {
-        const person: Person = {
-            age: 100,
-            birthCountry: 'NZ'
+        const input: OuterObject = {
+            person: {
+                age: 100,
+                birthCountry: 'NZ'
+            }
         };
 
-        const outer: OuterObject = {
-            person: person
-        };
-
-        const result = pathToInnerAge(outer);
-        expect(result).to.equal(person.age);
+        const result = pathToInnerAge(input);
+        expect(result).to.equal(input.person.age);
     });
 });
 
 describe('Denaturalise person', () => {
 
     it('removes the naturalisation date from a person', () => {
-        const person: Person = {
+        const input: Person = {
             age: 100,
             birthCountry: 'NZ',
             naturalisationDate: new Date(2020, 1, 2)
         };
 
-        const result = denaturalisePerson(person);
-        expect(result.naturalisationDate).to.equal(undefined);
+        const expected: Person = {
+            age: input.age,
+            birthCountry: input.birthCountry
+        };
+
+        const result = denaturalisePerson(input);
+        expect(result).to.eql(expected);
     });
 });
 
 describe('Denaturalise inner person', () => {
 
     it('removes the naturalisation date from a person', () => {
-        const person: Person = {
-            age: 100,
-            birthCountry: 'NZ',
-            naturalisationDate: new Date(2020, 1, 2)
+        const input: OuterObject = {
+            person: {
+                age: 100,
+                birthCountry: 'NZ',
+                naturalisationDate: new Date(2020, 1, 2)
+            }
         };
 
-        const outer: OuterObject = {
-            person: person
+        const expected: OuterObject = {
+            person: {
+                age: input.person.age,
+                birthCountry: input.person.birthCountry
+            }
         };
 
-        const result = denaturaliseInnerPerson(outer);
-        expect(result.person.naturalisationDate).to.equal(undefined);
+        const result = denaturaliseInnerPerson(input);
+        expect(result).to.eql(expected);
     });
 });
 
 describe('Denaturalise and debornarise', () => {
 
     it('removes age and birth country from a person', () => {
-        const person: Person = {
+        const input: Person = {
             age: 100,
             birthCountry: 'NZ'
         };
 
-        const result = denationaliseAndBornarise(person);
-        expect(result.age).to.equal(undefined);
-        expect(result.birthCountry).to.equal(undefined);
+        const expected = {};
+
+        const result = denationaliseAndBornarise(input);
+        expect(result).to.eql(expected);
     });
 });
 
 describe('Celebrate birthday', () => {
 
-    it('', () => {
-        const person: Person = {
+    it('increments person age', () => {
+        const input: Person = {
             age: 100,
             birthCountry: 'NZ'
         };
 
-        const result = celebrateBirthday(person);
-        expect(result.age).to.equal(101);
+        const expected: Person = {
+            age: 101,
+            birthCountry: input.birthCountry
+        };
+
+        const result = celebrateBirthday(input);
+        expect(result).to.eql(expected);
     });
 });
 
 describe('Celebrate birthday pointfree', () => {
 
-    it('', () => {
-        const person: Person = {
+    it('increments person age', () => {
+        const input: Person = {
             age: 100,
             birthCountry: 'NZ'
         };
 
-        const result = celebrateBirthdayPointfree(person);
-        expect(result.age).to.equal(101);
+        const expected: Person = {
+            age: 101,
+            birthCountry: input.birthCountry
+        };
+
+        const result = celebrateBirthdayPointfree(input);
+        expect(result).to.eql(expected);
+    });
+});
+
+describe('Merge', () => {
+
+    it('uses defaults if neither supplied', () => {
+        const input = {};
+
+        const expected = {
+            value: 42,
+            local: true
+        };
+
+        const result = mergeWithDefaultOptions(input);
+        expect(result).to.eql(expected);
+    });
+
+    it('uses default value if not supplied', () => {
+        const input = {
+            local: false
+        };
+
+        const expected = {
+            value: 42,
+            local: false
+        };
+
+        const result = mergeWithDefaultOptions(input);
+        expect(result).to.eql(expected);
+    });
+
+    it('uses default local if not supplied', () => {
+        const input = {
+            value: 24
+        };
+
+        const expected = {
+            value: 24,
+            local: true
+        };
+
+        const result = mergeWithDefaultOptions(input);
+        expect(result).to.eql(expected);
+    });
+
+    it('does not use defaults in both values supplied', () => {
+        const input = {
+            value: 24,
+            local: false
+        };
+
+        const result = mergeWithDefaultOptions(input);
+        expect(result).to.eql(input);
+    });
+
+    it('adds default properties to object', () => {
+        const input = {
+            name: 'name'
+        };
+
+        const expected = {
+            name: 'name',
+            value: 42,
+            local: true
+        };
+
+        const result = mergeWithDefaultOptions(input);
+        expect(result).to.eql(expected);
     });
 });

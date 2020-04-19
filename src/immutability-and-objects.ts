@@ -53,8 +53,8 @@ const pathToInnerAge = R.path(['person', 'age']);
 
 // propOr / pathOr -- allow specifying default values
 const defaultDate = new Date(2020, 1, 1);
-const hasNaturalisationDateOr = R.propOr(defaultDate, 'naturalisationDate');
-const hasNaturalisationDatePathOr = R.pathOr(defaultDate, ['person', 'naturalisationDate']);
+const naturalisationDateOr = R.propOr(defaultDate, 'naturalisationDate');
+const naturalisationDatePathOr = R.pathOr(defaultDate, ['person', 'naturalisationDate']);
 
 // see also R.keys, R.values 
 
@@ -81,6 +81,11 @@ const celebrateBirthday = (person: Person) => R.assoc('age', nextAge(person), pe
 // Pointfree using evolve - this is apparently very useful and powerful, you should check it out
 const celebrateBirthdayPointfree = R.evolve({ age: R.inc });
 
+const mergeWithDefaultOptions = (options) => {
+    const defaultOptions = { value: 42, local: true };
+    return R.merge(defaultOptions, options);
+};
+
 export {
     wasBornInCountry,
     wasBornInCountryProp,
@@ -99,8 +104,8 @@ export {
     OuterObject,
     defaultDate,
     hasNaturalisationDate,
-    hasNaturalisationDateOr,
-    hasNaturalisationDatePathOr,
+    naturalisationDateOr,
+    naturalisationDatePathOr,
     renamePersonPedro,
     renameInnerPersonPedro,
     pathToInnerAge,
@@ -108,5 +113,6 @@ export {
     denaturaliseInnerPerson,
     denationaliseAndBornarise,
     celebrateBirthday,
-    celebrateBirthdayPointfree
+    celebrateBirthdayPointfree,
+    mergeWithDefaultOptions
 };

@@ -46,54 +46,54 @@ describe('Operate pipe', () => {
 describe('Is eligible to vote', () => {
 
     it('people over 18 and born in NZ should be eligible', () => {
-        const person: Person = {
+        const input: Person = {
             age: 18,
             birthCountry: 'NZ'
         };
 
-        const result = isEligibleToVote(person);
+        const result = isEligibleToVote(input);
         expect(result).to.equal(true);
     });
 
     it('people over 18 and not born in NZ should not be eligible', () => {
-        const person: Person = {
+        const input: Person = {
             age: 18,
             birthCountry: 'IN'
         };
 
-        const result = isEligibleToVote(person);
+        const result = isEligibleToVote(input);
         expect(result).to.equal(false);
     });
 
     it('people under 18 and born in NZ should not be eligible', () => {
-        const person: Person = {
+        const input: Person = {
             age: 17,
             birthCountry: 'NZ'
         };
 
-        const result = isEligibleToVote(person);
+        const result = isEligibleToVote(input);
         expect(result).to.equal(false);
     });
 
     it('people over 18 and naturalised should be eligible', () => {
-        const person: Person = {
+        const input: Person = {
             age: 18,
             birthCountry: 'NZ',
             naturalisationDate: new Date(2020, 1, 1)
         };
 
-        const result = isEligibleToVote(person);
+        const result = isEligibleToVote(input);
         expect(result).to.equal(true);
     });
 
     it('people under 18 and naturalised should not be eligible', () => {
-        const person: Person = {
+        const input: Person = {
             age: 17,
             birthCountry: 'NZ',
             naturalisationDate: new Date(2020, 1, 1)
         };
 
-        const result = isEligibleToVote(person);
+        const result = isEligibleToVote(input);
         expect(result).to.equal(false);
     });
 });
@@ -101,54 +101,54 @@ describe('Is eligible to vote', () => {
 describe('Is eligible to vote ramda', () => {
 
     it('people over 18 and born in NZ should be eligible', () => {
-        const person: Person = {
+        const input: Person = {
             age: 18,
             birthCountry: 'NZ'
         };
 
-        const result = isEligibleToVoteRamda(person);
+        const result = isEligibleToVoteRamda(input);
         expect(result).to.equal(true);
     });
 
     it('people over 18 and not born in NZ should not be eligible', () => {
-        const person: Person = {
+        const input: Person = {
             age: 18,
             birthCountry: 'IN'
         };
 
-        const result = isEligibleToVoteRamda(person);
+        const result = isEligibleToVoteRamda(input);
         expect(result).to.equal(false);
     });
 
     it('people under 18 and born in NZ should not be eligible', () => {
-        const person: Person = {
+        const input: Person = {
             age: 17,
             birthCountry: 'NZ'
         };
 
-        const result = isEligibleToVoteRamda(person);
+        const result = isEligibleToVoteRamda(input);
         expect(result).to.equal(false);
     });
 
     it('people over 18 and naturalised should be eligible', () => {
-        const person: Person = {
+        const input: Person = {
             age: 18,
             birthCountry: 'NZ',
             naturalisationDate: new Date(2020, 1, 1)
         };
 
-        const result = isEligibleToVoteRamda(person);
+        const result = isEligibleToVoteRamda(input);
         expect(result).to.equal(true);
     });
 
     it('people under 18 and naturalised should not be eligible', () => {
-        const person: Person = {
+        const input: Person = {
             age: 1,
             birthCountry: 'NZ',
             naturalisationDate: new Date(2020, 1, 1)
         };
 
-        const result = isEligibleToVoteRamda(person);
+        const result = isEligibleToVoteRamda(input);
         expect(result).to.equal(false);
     });
 });
@@ -156,35 +156,35 @@ describe('Is eligible to vote ramda', () => {
 describe('Line width', () => {
 
     it('returns the input if it is not nil', () => {
-        const settings: Settings = {
+        const input: Settings = {
             lineWidth: 123
         };
 
-        const result = lineWidth(settings);
-        expect(result).to.equal(settings.lineWidth);
+        const result = lineWidth(input);
+        expect(result).to.equal(input.lineWidth);
     });
 
     it('returns 80 if the input is undefined', () => {
-        const settings: Settings = {};
-        const result = lineWidth(settings);
+        const input: Settings = {};
+        const result = lineWidth(input);
         expect(result).to.equal(80);
     });
 
     it('returns 80 if the input is null', () => {
-        const settings: Settings = {
+        const input: Settings = {
             lineWidth: null
         };
 
-        const result = lineWidth(settings);
+        const result = lineWidth(input);
         expect(result).to.equal(80);
     });
 
     it('returns 80 if the input is zero (although we would like it not to)', () => {
-        const settings: Settings = {
+        const input: Settings = {
             lineWidth: 0
         };
 
-        const result = lineWidth(settings);
+        const result = lineWidth(input);
         expect(result).to.equal(80);
     });
 });
@@ -192,35 +192,35 @@ describe('Line width', () => {
 describe('Line width ramda', () => {
 
     it('returns the input if it is not nil', () => {
-        const settings: Settings = {
+        const input: Settings = {
             lineWidth: 123
         };
 
-        const result = lineWidthRamda(settings);
-        expect(result).to.equal(settings.lineWidth);
+        const result = lineWidthRamda(input);
+        expect(result).to.equal(input.lineWidth);
     });
 
     it('returns 80 if the input is undefined', () => {
-        const settings: Settings = {};
-        const result = lineWidthRamda(settings);
+        const input: Settings = {};
+        const result = lineWidthRamda(input);
         expect(result).to.equal(80);
     });
 
     it('returns 80 if the input is null', () => {
-        const settings: Settings = {
+        const input: Settings = {
             lineWidth: null
         };
 
-        const result = lineWidthRamda(settings);
+        const result = lineWidthRamda(input);
         expect(result).to.equal(80);
     });
 
     it('returns 0 if the input is 0', () => {
-        const settings: Settings = {
+        const input: Settings = {
             lineWidth: 0
         };
 
-        const result = lineWidthRamda(settings);
+        const result = lineWidthRamda(input);
         expect(result).to.equal(0);
     });
 });

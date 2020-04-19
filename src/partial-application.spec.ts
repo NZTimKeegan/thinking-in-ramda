@@ -26,11 +26,11 @@ describe('Titles for year', () => {
             year: 2019
         };
 
-        const result = titlesForYear([bookMatch, bookDoesNotMatch], 2020);
-        expect(result.length).to.equal(1);
-        expect(result[0]).to.equal(bookMatch.title);
-    });
+        const expected = [bookMatch.title];
 
+        const result = titlesForYear([bookMatch, bookDoesNotMatch], 2020);
+        expect(result).to.eql(expected);
+    });
 });
 
 describe('Titles for year compose', () => {
@@ -46,11 +46,10 @@ describe('Titles for year compose', () => {
             year: 2019
         };
 
+        const expected = [bookMatch.title];
         const result = titlesForYearCompose(2020, [bookMatch, bookDoesNotMatch]);
-        expect(result.length).to.equal(1);
-        expect(result[0]).to.equal(bookMatch.title);
+        expect(result).to.eql(expected);
     });
-
 });
 
 describe('Titles for year curry', () => {
@@ -66,11 +65,10 @@ describe('Titles for year curry', () => {
             year: 2019
         };
 
+        const expected = [bookMatch.title];
         const result = titlesForYearCurry([bookMatch, bookDoesNotMatch], 2020);
-        expect(result.length).to.equal(1);
-        expect(result[0]).to.equal(bookMatch.title);
+        expect(result).to.eql(expected);
     });
-
 });
 
 describe('Titles for year flip', () => {
@@ -86,11 +84,10 @@ describe('Titles for year flip', () => {
             year: 2019
         };
 
+        const expected = [bookMatch.title];
         const result = titlesForYearFlip([bookMatch, bookDoesNotMatch], 2020);
-        expect(result.length).to.equal(1);
-        expect(result[0]).to.equal(bookMatch.title);
+        expect(result).to.eql(expected);
     });
-
 });
 
 describe('Titles for year partial', () => {
@@ -106,11 +103,10 @@ describe('Titles for year partial', () => {
             year: 2019
         };
 
+        const expected = [bookMatch.title];
         const result = titlesForYearPartial([bookMatch, bookDoesNotMatch], 2020);
-        expect(result.length).to.equal(1);
-        expect(result[0]).to.equal(bookMatch.title);
+        expect(result).to.eql(expected);
     });
-
 });
 
 describe('Titles for year pipe', () => {
@@ -126,11 +122,10 @@ describe('Titles for year pipe', () => {
             year: 2019
         };
 
+        const expected = [bookMatch.title];
         const result = titlesForYearPipe(2020, [bookMatch, bookDoesNotMatch]);
-        expect(result.length).to.equal(1);
-        expect(result[0]).to.equal(bookMatch.title);
+        expect(result).to.eql(expected);
     });
-
 });
 
 describe('Titles for year placeholder', () => {
@@ -146,11 +141,10 @@ describe('Titles for year placeholder', () => {
             year: 2019
         };
 
+        const expected = [bookMatch.title];
         const result = titlesForYearPlaceholder([bookMatch, bookDoesNotMatch], 2020);
-        expect(result.length).to.equal(1);
-        expect(result[0]).to.equal(bookMatch.title);
+        expect(result).to.eql(expected);
     });
-
 });
 
 describe('Titles for year simple filter', () => {
@@ -166,9 +160,8 @@ describe('Titles for year simple filter', () => {
             year: 2019
         };
 
+        const expected = [bookMatch.title];
         const result = titlesForYearSimpleFilter([bookMatch, bookDoesNotMatch], 2020);
-        expect(result.length).to.equal(1);
-        expect(result[0]).to.equal(bookMatch.title);
+        expect(result).to.eql(expected);
     });
-
 });

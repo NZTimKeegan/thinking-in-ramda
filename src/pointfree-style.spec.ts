@@ -114,9 +114,9 @@ describe('Titles for year', () => {
             year: 2019
         };
 
+        const expected = [bookMatch.title];
         const result = titlesForYear(2020, [bookMatch, bookDoesNotMatch]);
-        expect(result.length).to.equal(1);
-        expect(result[0]).to.equal(bookMatch.title);
+        expect(result).to.eql(expected);
     });
 });
 
@@ -134,10 +134,10 @@ describe('Titles for year point free', () => {
         };
 
         // note the ugly syntax because we went point free
-        // instead of titlesForYearPointfree(2020, [a, b])
+        // instead of titlesForYear(2020, [a, b])
         // we have to write titlesForYearPointfree(2020)([a, b])
+        const expected = [bookMatch.title];
         const result = titlesForYearPointfree(2020)([bookMatch, bookDoesNotMatch]);
-        expect(result.length).to.equal(1);
-        expect(result[0]).to.equal(bookMatch.title);
+        expect(result).to.eql(expected);
     });
 });
