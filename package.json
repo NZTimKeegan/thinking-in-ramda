@@ -6,7 +6,7 @@
   "dependencies": {
     "nyc": "^15.1.0",
     "typescript": "^3.9.10",
-    "ramda": "^0.28.0"
+    "ramda": "^0.29.0"
   },
   "devDependencies": {
     "@types/chai": "^4.2.11",
