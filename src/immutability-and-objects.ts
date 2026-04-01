@@ -83,7 +83,7 @@ const celebrateBirthdayPointfree = R.evolve({ age: R.inc });
 
 const mergeWithDefaultOptions = (options) => {
     const defaultOptions = { value: 42, local: true };
-    return R.merge(defaultOptions, options);
+    return R.mergeRight(defaultOptions, options);
 };
 
 export {

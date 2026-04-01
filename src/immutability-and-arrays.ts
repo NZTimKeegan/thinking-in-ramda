@@ -8,7 +8,7 @@ const secondFromTheRight = R.nth(-2, numbers);
 
 const middleThree = R.slice(2, 5, numbers);
 
-const containsTwenty = R.contains(20, numbers);
+const includesTwenty = R.includes(20, numbers);
 
 const headOfNumbers = R.head(numbers);
 
@@ -52,7 +52,7 @@ export {
     third,
     secondFromTheRight,
     middleThree,
-    containsTwenty,
+    includesTwenty,
     headOfNumbers,
     tailOfNumbers,
     lastOfNumbers,

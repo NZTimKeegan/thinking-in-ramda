@@ -2,7 +2,7 @@ import {
     third,
     secondFromTheRight,
     middleThree,
-    containsTwenty,
+    includesTwenty,
     headOfNumbers,
     tailOfNumbers,
     lastOfNumbers,
@@ -44,8 +44,8 @@ describe('Slice', () => {
 
 describe('Contains', () => {
 
-    it('numbers contains 20', () => {
-        expect(containsTwenty).to.equal(true);
+    it('numbers includes 20', () => {
+        expect(includesTwenty).to.equal(true);
     });
 });
 
