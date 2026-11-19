@@ -78,7 +78,7 @@ describe('Is eligible to vote', () => {
     it('people over 18 and naturalised should be eligible', () => {
         const input: Person = {
             age: 18,
-            birthCountry: 'NZ',
+            birthCountry: 'IN',
             naturalisationDate: new Date(2020, 1, 1)
         };
 
@@ -89,7 +89,7 @@ describe('Is eligible to vote', () => {
     it('people under 18 and naturalised should not be eligible', () => {
         const input: Person = {
             age: 17,
-            birthCountry: 'NZ',
+            birthCountry: 'IN',
             naturalisationDate: new Date(2020, 1, 1)
         };
 
@@ -133,7 +133,7 @@ describe('Is eligible to vote ramda', () => {
     it('people over 18 and naturalised should be eligible', () => {
         const input: Person = {
             age: 18,
-            birthCountry: 'NZ',
+            birthCountry: 'IN',
             naturalisationDate: new Date(2020, 1, 1)
         };
 
@@ -144,7 +144,7 @@ describe('Is eligible to vote ramda', () => {
     it('people under 18 and naturalised should not be eligible', () => {
         const input: Person = {
             age: 1,
-            birthCountry: 'NZ',
+            birthCountry: 'IN',
             naturalisationDate: new Date(2020, 1, 1)
         };
 

@@ -3,7 +3,7 @@ import * as R from 'ramda';
 const numbers = [10, 20, 30, 40, 50, 60];
 
 // Reading array elements 
-const third = R.nth(3, numbers);
+const fourth = R.nth(3, numbers);
 const secondFromTheRight = R.nth(-2, numbers);
 
 const middleThree = R.slice(2, 5, numbers);
@@ -42,14 +42,14 @@ const withoutArray = R.without([30, 40, 50], numbers);
 
 const dropThree = R.drop(3, numbers);
 
-const dropLastThree = R.dropLast(4, numbers);
+const dropLastFour = R.dropLast(4, numbers);
 
 // Transforming elements
 // Adjust - works like R.evolve on objects
 const adjustedTwo = R.adjust(2, R.multiply(10), numbers);
 
 export {
-    third,
+    fourth,
     secondFromTheRight,
     middleThree,
     includesTwenty,
@@ -67,6 +67,6 @@ export {
     removeTwoThree,
     withoutArray,
     dropThree,
-    dropLastThree,
+    dropLastFour,
     adjustedTwo
 };
