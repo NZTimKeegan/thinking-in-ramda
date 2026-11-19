@@ -49,7 +49,7 @@ const publishedInYear = R.curry((year: number, book: Book) => book.year === year
 
 const titlesForYear = R.curry((year: number, books: Book[]) =>
     R.pipe(
-        R.filter(publishedInYear(year)),
+        R.filter<Book>(publishedInYear(year)),
         R.map((book: Book) => book.title)
     )(books)
 );
@@ -58,7 +58,7 @@ const titlesForYear = R.curry((year: number, books: Book[]) =>
 // probably better not to bother cause it is confusing to have some but not all parameters
 const titlesForYearPointfree = (year: number) =>
     R.pipe(
-        R.filter(publishedInYear(year)),
+        R.filter<Book>(publishedInYear(year)),
         R.map((book: Book) => book.title)
     );
 

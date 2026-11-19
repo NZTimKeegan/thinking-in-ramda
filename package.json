@@ -4,19 +4,21 @@
   "description": "Working through https://www.randycoulman.com/blog/categories/thinking-in-ramda/",
   "main": "src/combining-functions.ts",
   "dependencies": {
-    "nyc": "^15.1.0",
-    "typescript": "^3.9.10",
-    "ramda": "^0.29.0"
+    "nyc": "^18.0.0",
+    "ramda": "^0.32.0",
+    "typescript": "^7.0.2"
   },
   "devDependencies": {
-    "@types/chai": "^4.2.11",
-    "@types/mocha": "^7.0.2",
-    "chai": "^4.2.0",
-    "mocha": "^10.2.0",
-    "ts-node": "^8.8.2"
+    "@types/chai": "^5.2.3",
+    "@types/mocha": "^10.0.10",
+    "@types/ramda": "^0.32.0",
+    "chai": "^6.3.0",
+    "mocha": "^12.0.3",
+    "tsx": "^4.23.15"
   },
   "scripts": {
-    "test": "nyc mocha -r ts-node/register src/**/*.spec.ts"
+    "typecheck": "tsc -p .",
+    "test": "npm run typecheck && nyc mocha --import=tsx 'src/**/*.spec.ts'"
   },
   "author": "",
   "license": "ISC"
