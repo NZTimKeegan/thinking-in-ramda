@@ -37,7 +37,7 @@ describe('Is Eligible to Vote', () => {
     it('people over 18 and naturalised should be eligible', () => {
         const input: Person = {
             age: 18,
-            birthCountry: 'NZ',
+            birthCountry: 'IN',
             naturalisationDate: new Date(2020, 1, 1)
         };
 
@@ -48,7 +48,7 @@ describe('Is Eligible to Vote', () => {
     it('people under 18 and naturalised should not be eligible', () => {
         const input: Person = {
             age: 17,
-            birthCountry: 'NZ',
+            birthCountry: 'IN',
             naturalisationDate: new Date(2020, 1, 1)
         };
 

@@ -1,5 +1,5 @@
 import {
-    third,
+    fourth,
     secondFromTheRight,
     middleThree,
     includesTwenty,
@@ -17,7 +17,7 @@ import {
     removeTwoThree,
     withoutArray,
     dropThree,
-    dropLastThree,
+    dropLastFour,
     adjustedTwo
 } from './immutability-and-arrays';
 
@@ -26,8 +26,8 @@ import 'mocha';
 
 describe('Nth', () => {
 
-    it('third picks the element at index 3', () => {
-        expect(third).to.equal(40);
+    it('fourth picks the element at index 3', () => {
+        expect(fourth).to.equal(40);
     });
 
     it('second from the right picks the element at index 4', () => {
@@ -150,7 +150,7 @@ describe('Drop', () => {
 describe('Drop last', () => {
 
     it('drops the last 4 numbers', () => {
-        expect(dropLastThree).to.eql([10, 20]);
+        expect(dropLastFour).to.eql([10, 20]);
     });
 });
 
