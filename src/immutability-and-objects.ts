@@ -81,7 +81,7 @@ const celebrateBirthday = (person: Person) => R.assoc('age', nextAge(person), pe
 // Pointfree using evolve - this is apparently very useful and powerful, you should check it out
 const celebrateBirthdayPointfree = R.evolve({ age: R.inc });
 
-const mergeWithDefaultOptions = (options) => {
+const mergeWithDefaultOptions = (options: Record<string, unknown>) => {
     const defaultOptions = { value: 42, local: true };
     return R.mergeRight(defaultOptions, options);
 };

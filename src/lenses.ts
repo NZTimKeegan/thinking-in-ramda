@@ -18,7 +18,7 @@ const person: Person = {
     }
 };
 
-const nameLens = R.lens(R.prop('name'), R.assoc('name'));
+const nameLens = R.lens<Person, string>(R.prop('name'), R.assoc('name'));
 
 const twitterLens = R.lens(
     R.path(['socialMedia', 'twitter']),
@@ -26,7 +26,7 @@ const twitterLens = R.lens(
 );
 
 // Notice we're repeating ourselves? Heres the shorthand version
-const nameLensProp = R.lensProp('name');
+const nameLensProp = R.lensProp<Person, 'name'>('name');
 
 const twitterLensPath = R.lensPath(['socialMedia', 'twitter']);
 

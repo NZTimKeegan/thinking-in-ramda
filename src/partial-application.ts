@@ -38,7 +38,7 @@ const titlesForYearPartial = (books: Book[], year: number) => {
 const publishedInYearCurry = R.curry((year: number, book: Book) => book.year === year);
 
 const titlesForYearCurry = (books: Book[], year: number) => {
-    const selected = R.filter(publishedInYearCurry(year), books);
+    const selected = R.filter<Book, Book[]>(publishedInYearCurry(year), books);
 
     return R.map((book: Book) => book.title, selected);
 }
@@ -58,7 +58,7 @@ const titlesForYearFlip = (books: Book[], year: number) => {
 // with any type of function
 const publishedInYearFlip = R.flip(publishedInYearCurry);
 const titlesForYearPlaceholder = (books: Book[], year: number) => {
-    const selected = R.filter(publishedInYearFlip(R.__, year), books);
+    const selected = R.filter<Book, Book[]>(publishedInYearFlip(R.__, year), books);
     
     return R.map((book: Book) => book.title, selected);
 }
@@ -69,7 +69,7 @@ const titlesForYearPlaceholder = (books: Book[], year: number) => {
 // and the function has been curried so it too can support partial application
 const titlesForYearPipe = R.curry((year: number, books: Book[]) =>
     R.pipe(
-        R.filter(publishedInYearCurry(year)),
+        R.filter<Book>(publishedInYearCurry(year)),
         R.map((book: Book) => book.title)
     )(books)
 );
@@ -78,7 +78,7 @@ const titlesForYearPipe = R.curry((year: number, books: Book[]) =>
 const titlesForYearCompose = R.curry((year: number, books: Book[]) =>
     R.compose(
         R.map((book: Book) => book.title),
-        R.filter(publishedInYearCurry(year))
+        R.filter<Book>(publishedInYearCurry(year))
     )(books)
 );
 

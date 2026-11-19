@@ -55,7 +55,7 @@ const isEligibleToVoteRamda = R.both(isOver18Ramda, isCitizenRamda);
 // Logic
 // Default Values
 interface Settings {
-    lineWidth?: number;
+    lineWidth?: number | null;
 }
 
 // this function takes either the value of line width or the value 80 as a default
@@ -111,7 +111,7 @@ const water = (temperature: number) =>
     R.cond([
         [R.equals(0), R.always('water freezes at 0 degrees')],
         [R.equals(100), R.always('water boils at 100 degrees')],
-        [R.T, (temp: string) => `nothing special happens at ${temp} degrees`]
+        [R.T, (temp: number) => `nothing special happens at ${temp} degrees`]
     ])(temperature);
 
 export {
